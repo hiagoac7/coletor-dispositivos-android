@@ -1,5 +1,8 @@
 * text=auto
-*.py text eol=lf
+*.py text eol=lf linguist-language=Python linguist-detectable=true
 *.spec text eol=lf
+# Configuracao real de compilacao; INI normalmente nao entra na estatistica.
+buildozer.spec linguist-language=INI linguist-detectable=true
+config.example.json linguist-language=JSON linguist-detectable=true
+# Notebook auxiliar, fora da proporcao do codigo do aplicativo.
 *.ipynb linguist-generated=true
-buildozer.spec linguist-language=INI
