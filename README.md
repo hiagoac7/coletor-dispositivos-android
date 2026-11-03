@@ -1,5 +1,13 @@
 # Coletor de Dispositivos Android
 
+**Inventário móvel com Python, Kivy e cliente de integração com Google Sheets.**
+
+![Diagrama funcional do Coletor Android](docs/images/visao-geral.svg)
+
+*Diagrama do funcionamento baseado no código; não é uma captura de tela.*
+
+[Configuração](#configuração) · [Como usar](#como-usar) · [Tecnologias](#tecnologias) · [Limitações](#validação)
+
 Aplicativo em Python e Kivy para coletar fabricante, modelo, serial disponível, versão do Android e Android ID, associar o aparelho a um usuário e enviar os dados a uma planilha Google Sheets por um Web App do Google Apps Script.
 
 Projeto separado de [Inventário de Ativos de TI — Windows](https://github.com/hiagoac7/inventario-ti).
@@ -17,6 +25,27 @@ Python, Kivy, PyJNIus, Buildozer, Android SDK/NDK e integração HTTP com Google
 
 O campo legado `imei` transporta o **Android ID**, não o IMEI. Isso preserva o contrato do cliente original. O serial pode estar indisponível ou retornar um identificador de build em versões recentes do Android; não o trate como identificador único confiável. Fora do Android, o aplicativo usa dados fictícios para demonstração.
 
+## Como usar
+
+1. Baixe o projeto: `git clone https://github.com/hiagoac7/coletor-dispositivos-android.git`.
+2. Prepare `config.json` a partir do exemplo e configure seu endpoint.
+3. Compile com Buildozer em Linux. O notebook [Build_APK_Colab.ipynb](Build_APK_Colab.ipynb) é auxiliar e exige preparar as dependências de compilação.
+4. Instale o APK de teste em um aparelho autorizado e confira os dados exibidos.
+5. Selecione o usuário e toque em **ENVIAR INVENTARIO**.
+6. Confira o registro na planilha de destino; a mensagem na interface depende do retorno do endpoint.
+
+Sem URL ou usuários configurados, o botão de envio fica desabilitado. O repositório não oferece uma planilha pública nem um servidor de demonstração.
+
+## Tecnologias por função
+
+| Função | Tecnologia |
+| --- | --- |
+| Interface | Python, Kivy |
+| Leitura do aparelho | PyJNIus, APIs Android |
+| Comunicação | HTTP POST, urllib, TLS |
+| Destino da integração | Google Apps Script e Google Sheets |
+| Empacotamento | Buildozer, Android SDK/NDK |
+
 ## Segurança e privacidade
 
 A lista nominal e o endpoint original foram retirados desta versão. `config.json` fica fora do Git, mas é incluído no APK durante a compilação: não coloque senhas ou segredos nele. Restrinja acesso no servidor e colete somente os dados necessários, com autorização dos envolvidos. A conexão usa a verificação padrão de certificados TLS.
@@ -25,7 +54,7 @@ O retorno do servidor ainda usa o comportamento legado: respostas contendo "Erro
 
 ## Validação
 
-A estrutura e as dependências da separação foram revisadas. A verificação automática de sintaxe não foi executada porque não há Python disponível neste ambiente. A compilação do APK, a compatibilidade do ambiente de build e o envio real ao Google Sheets precisam de testes no ambiente de destino. Não há APK validado anexado a este repositório.
+A estrutura e as dependências da separação foram revisadas. A compilação do APK, a compatibilidade do ambiente de build e o envio real ao Google Sheets precisam de testes no ambiente de destino. Não há APK validado anexado a este repositório.
 
 ## Arquivos
 
@@ -33,3 +62,7 @@ A estrutura e as dependências da separação foram revisadas. A verificação a
 - `buildozer.spec`: configuração do APK.
 - `config.example.json`: exemplo sem dados reais.
 - `Build_APK_Colab.ipynb`: notebook auxiliar que baixa este repositório, solicita a configuração local e inicia o build.
+
+## Outros projetos
+
+[Inventário Windows](https://github.com/hiagoac7/inventario-ti) · [Central de Suporte de TI](https://github.com/hiagoac7/Portal-Suporte) · [Sistema ATS](https://github.com/hiagoac7/rh-ats)
