@@ -25,7 +25,7 @@ O retorno do servidor ainda usa o comportamento legado: respostas contendo "Erro
 
 ## Validação
 
-A separação e a sintaxe Python foram verificadas. A compilação do APK, a compatibilidade do ambiente de build e o envio real ao Google Sheets precisam de testes no ambiente de destino. Não há APK validado anexado a este repositório.
+A estrutura e as dependências da separação foram revisadas. A verificação automática de sintaxe não foi executada porque não há Python disponível neste ambiente. A compilação do APK, a compatibilidade do ambiente de build e o envio real ao Google Sheets precisam de testes no ambiente de destino. Não há APK validado anexado a este repositório.
 
 ## Arquivos
 

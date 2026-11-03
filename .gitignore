@@ -1,0 +1,7 @@
+config.json
+.buildozer/
+bin/
+__pycache__/
+*.pyc
+*.apk
+*.aab

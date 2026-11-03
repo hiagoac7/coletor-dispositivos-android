@@ -1,0 +1,5 @@
+* text=auto
+*.py text eol=lf
+*.spec text eol=lf
+*.ipynb linguist-generated=true
+buildozer.spec linguist-language=INI
